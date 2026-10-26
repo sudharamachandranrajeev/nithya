@@ -1,0 +1,15 @@
+# Flutter / Dart
+.dart_tool/
+build/
+.flutter-plugins*
+*.iml
+.idea/
+
+# Web
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Tauri
+web/src-tauri/target/
+web/src-tauri/gen/
