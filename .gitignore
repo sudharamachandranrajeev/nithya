@@ -11,5 +11,5 @@ dist/
 *.tsbuildinfo
 
 # Tauri
-web/src-tauri/target/
-web/src-tauri/gen/
+**/src-tauri/target/
+**/src-tauri/gen/

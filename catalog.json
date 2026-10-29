@@ -1,0 +1,125 @@
+{
+  "$description": "The Nithya menu. Every kit, component and pattern you can choose, by category. Themes are read from each kit's token file, so they never go stale here. Browse with `node nithya.mjs`.",
+  "categories": {
+    "kits": "A whole design system for one or more runtimes: tokens, themes and components. Pick one per app.",
+    "themes": "Ready-made looks inside a kit. Choose which ones an app ships, and which comes first (the default).",
+    "components": "Screen parts in a kit. They come with the kit; this list tells you what you get and where it lives.",
+    "patterns": "Ideas worth reusing in any app, written up with the code that does them."
+  },
+  "kits": [
+    {
+      "id": "studio",
+      "name": "Studio",
+      "summary": "Dark-first look for creative tools: launcher cards, a prompt dock, floating panels over a canvas.",
+      "bestFor": "Desktop media, canvas and 3D tools.",
+      "origin": "Clean-room study of a shipped creative-studio app (docs/clean-room.md).",
+      "path": "kits/studio",
+      "tokens": "tokens/nithya.tokens.json",
+      "build": "tokens/build.mjs",
+      "runtimes": {
+        "flutter": {
+          "label": "Flutter",
+          "files": ["tokens", "flutter"],
+          "exclude": ["flutter/example", "flutter/test"],
+          "next": [
+            "Add to pubspec.yaml:  nithya: { path: <dest>/flutter }",
+            "Apply a theme:  MaterialApp(theme: nithyaTheme(nithyaPalettes['<first theme>']))",
+            "Change tokens in <dest>/tokens/nithya.tokens.json, then run  node <dest>/tokens/build.mjs"
+          ]
+        },
+        "react": {
+          "label": "React (Tauri + web)",
+          "files": ["tokens", "web/src/nithya", "flutter/assets/fonts"],
+          "exclude": ["web/src/nithya/nithya.test.tsx"],
+          "next": [
+            "Install the parts' libraries in your app:  npm i react react-dom lucide-react",
+            "Import once:  import { NithyaTheme } from '<dest>/web/src/nithya'",
+            "Wrap the app:  <NithyaTheme theme=\"<first theme>\">",
+            "Change tokens in <dest>/tokens/nithya.tokens.json, then run  node <dest>/tokens/build.mjs"
+          ]
+        }
+      }
+    },
+    {
+      "id": "calm",
+      "name": "Calm",
+      "summary": "Quiet, readable look for everyday apps: global themes in light and dark, calm motion, a safe theme editor, a '?' on every number.",
+      "bestFor": "Personal and record-keeping apps where people read more than they make.",
+      "origin": "Our own design, first built for Arogya Swasthya (2026-10).",
+      "path": "kits/calm",
+      "tokens": "tokens/calm.tokens.json",
+      "build": "scripts/build.mjs",
+      "runtimes": {
+        "svelte": {
+          "label": "Svelte 5",
+          "files": ["package.json", "tokens", "scripts", "src", "test"],
+          "package": {
+            "scripts": {
+              "tokens": "node scripts/build.mjs",
+              "test": "node --test test/*.test.ts",
+              "check": "node scripts/build.mjs --check",
+              "dev": null,
+              "build": null
+            },
+            "devDependencies": null
+          },
+          "next": [
+            "Add <dest> to your npm workspaces, then  npm install",
+            "In main.ts:  import 'nithya-calm/base.css'  and  ui.start()  from 'nithya-calm'",
+            "Put ThemePicker and ThemeEditor on a settings page; every other screen follows",
+            "Change tokens in <dest>/tokens/calm.tokens.json, then run  node <dest>/scripts/build.mjs  (Node 22.18 or newer)"
+          ]
+        }
+      }
+    }
+  ],
+  "components": [
+    { "id": "calm/shell", "kit": "calm", "name": "Shell", "summary": "App frame: side rail on wide screens, bottom tabs and a More menu on phones.", "files": ["src/components/Shell.svelte"] },
+    { "id": "calm/card", "kit": "calm", "name": "Card", "summary": "Titled surface with an optional '?' explanation and an action slot.", "files": ["src/components/Card.svelte"] },
+    { "id": "calm/explain", "kit": "calm", "name": "Explain", "summary": "'?' button that opens a plain-words explanation in a popover.", "files": ["src/components/Explain.svelte"] },
+    { "id": "calm/row", "kit": "calm", "name": "Row", "summary": "List row: lead text, title, note and a trailing slot.", "files": ["src/components/Row.svelte"] },
+    { "id": "calm/pill", "kit": "calm", "name": "Pill", "summary": "Status label in five tones; becomes a button when it has an action.", "files": ["src/components/Pill.svelte"] },
+    { "id": "calm/button", "kit": "calm", "name": "Button", "summary": "Primary, quiet and ghost buttons.", "files": ["src/components/Button.svelte"] },
+    { "id": "calm/stat", "kit": "calm", "name": "Stat", "summary": "A number with unit, note, tone, trend line and '?' explanation.", "files": ["src/components/Stat.svelte"] },
+    { "id": "calm/sparkline", "kit": "calm", "name": "Sparkline", "summary": "Small trend line with an optional usual-range band.", "files": ["src/components/Sparkline.svelte"] },
+    { "id": "calm/segmented", "kit": "calm", "name": "Segmented", "summary": "Pick one of a few options.", "files": ["src/components/Segmented.svelte"] },
+    { "id": "calm/theme-picker", "kit": "calm", "name": "ThemePicker", "summary": "Live mini previews of every theme, plus light/dark and motion choices.", "files": ["src/components/ThemePicker.svelte"] },
+    { "id": "calm/theme-editor", "kit": "calm", "name": "ThemeEditor", "summary": "Make, share and load themes with a live preview and a readability check.", "files": ["src/components/ThemeEditor.svelte"] },
+
+    { "id": "studio/theme", "kit": "studio", "name": "NithyaTheme", "summary": "Apply a theme (Flutter: nithyaTheme + NithyaPalette).", "files": ["web/src/nithya/theme.tsx", "flutter/lib/src/theme.dart"] },
+    { "id": "studio/shell", "kit": "studio", "name": "Shell", "summary": "Top bar with modes, title and actions; Tauri drag region and window buttons.", "files": ["web/src/nithya/shell.tsx", "flutter/lib/src/widgets/shell.dart"] },
+    { "id": "studio/mode-switcher", "kit": "studio", "name": "ModeSwitcher", "summary": "Pill of icon buttons for the working mode.", "files": ["web/src/nithya/shell.tsx", "flutter/lib/src/widgets/shell.dart"] },
+    { "id": "studio/backdrop", "kit": "studio", "name": "Backdrop", "summary": "Flat colour, glow layers or a tinted grey photo behind the page.", "files": ["web/src/nithya/shell.tsx", "flutter/lib/src/widgets/shell.dart"] },
+    { "id": "studio/button", "kit": "studio", "name": "Button", "summary": "Primary, secondary, ghost and danger; pill, large and full-width.", "files": ["web/src/nithya/buttons.tsx", "flutter/lib/src/widgets/buttons.dart"] },
+    { "id": "studio/icon-button", "kit": "studio", "name": "IconButton", "summary": "Icon-only button; its label is required and becomes the accessible name.", "files": ["web/src/nithya/buttons.tsx", "flutter/lib/src/widgets/buttons.dart"] },
+    { "id": "studio/chip", "kit": "studio", "name": "Chip", "summary": "Small toggle or option pill.", "files": ["web/src/nithya/buttons.tsx", "flutter/lib/src/widgets/buttons.dart"] },
+    { "id": "studio/hero", "kit": "studio", "name": "Hero", "summary": "Centred headline with one accent word.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/section-label", "kit": "studio", "name": "SectionLabel", "summary": "Group heading.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/icon-tile", "kit": "studio", "name": "IconTile", "summary": "Hue-tinted icon square.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/badge", "kit": "studio", "name": "Badge", "summary": "NEW, BETA or SOON label.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/tool-card", "kit": "studio", "name": "ToolCard", "summary": "Launcher entry; SOON cards cannot be clicked.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/tool-grid", "kit": "studio", "name": "ToolGrid", "summary": "Responsive grid with a 300 px minimum column.", "files": ["web/src/nithya/launcher.tsx", "flutter/lib/src/widgets/launcher.dart"] },
+    { "id": "studio/prompt-dock", "kit": "studio", "name": "PromptDock", "summary": "Prompt field, options and send, with Enter / Shift+Enter rules.", "files": ["web/src/nithya/prompt-dock.tsx", "flutter/lib/src/widgets/prompt_dock.dart"] },
+    { "id": "studio/reference-slot", "kit": "studio", "name": "ReferenceSlot", "summary": "Dashed add-a-reference square.", "files": ["web/src/nithya/prompt-dock.tsx", "flutter/lib/src/widgets/prompt_dock.dart"] },
+    { "id": "studio/panel", "kit": "studio", "name": "Panel", "summary": "Floating surface with title, actions and close.", "files": ["web/src/nithya/surfaces.tsx", "flutter/lib/src/widgets/surfaces.dart"] },
+    { "id": "studio/toolbar", "kit": "studio", "name": "Toolbar", "summary": "Tool strip with dividers.", "files": ["web/src/nithya/surfaces.tsx", "flutter/lib/src/widgets/surfaces.dart"] },
+    { "id": "studio/segmented", "kit": "studio", "name": "Segmented", "summary": "Exclusive options pill.", "files": ["web/src/nithya/surfaces.tsx", "flutter/lib/src/widgets/surfaces.dart"] },
+    { "id": "studio/drop-zone", "kit": "studio", "name": "DropZone", "summary": "Dashed empty state that takes dropped files.", "files": ["web/src/nithya/surfaces.tsx", "flutter/lib/src/widgets/surfaces.dart"] },
+    { "id": "studio/select-tile", "kit": "studio", "name": "SelectTile", "summary": "Selectable preview with a caption.", "files": ["web/src/nithya/surfaces.tsx", "flutter/lib/src/widgets/surfaces.dart"] },
+    { "id": "studio/dialog", "kit": "studio", "name": "Dialog", "summary": "Modal on the theme scrim.", "files": ["web/src/nithya/dialogs.tsx", "flutter/lib/src/widgets/dialogs.dart"] },
+    { "id": "studio/sectioned-dialog", "kit": "studio", "name": "SectionedDialog", "summary": "Settings-style dialog with a list of sections down the side.", "files": ["web/src/nithya/dialogs.tsx", "flutter/lib/src/widgets/dialogs.dart"] },
+    { "id": "studio/switch-row", "kit": "studio", "name": "SwitchRow", "summary": "Labelled switch with a description.", "files": ["web/src/nithya/dialogs.tsx", "flutter/lib/src/widgets/dialogs.dart"] }
+  ],
+  "patterns": [
+    { "id": "global-theme-switch", "name": "One switch restyles the whole app", "summary": "Attributes on <html> pick the theme; every part reads CSS variables, so one change repaints every screen, cross-faded.", "kits": ["calm"], "doc": "patterns/global-theme-switch.md" },
+    { "id": "scoped-theme-preview", "name": "Live previews of other themes", "summary": "Any element can carry its own theme attributes, so a picker shows true previews side by side.", "kits": ["calm"], "doc": "patterns/scoped-theme-preview.md" },
+    { "id": "calm-motion", "name": "Calm mode", "summary": "Follows the system 'reduce motion' setting, with a manual override; one attribute stops every animation.", "kits": ["calm"], "doc": "patterns/calm-motion.md" },
+    { "id": "contrast-gate", "name": "Readable text, checked", "summary": "Every theme's text and background pairs meet WCAG 2.2 contrast, checked in the build and live in the editor.", "kits": ["calm"], "doc": "patterns/contrast-gate.md" },
+    { "id": "safe-theme-editor", "name": "Theme editor that cannot inject code", "summary": "Users mix colours, fonts and preset looks; imported themes are validated, never raw CSS.", "kits": ["calm"], "doc": "patterns/safe-theme-editor.md" },
+    { "id": "explain-everything", "name": "A '?' on every number", "summary": "Plain-words explanations in a popover beside each figure and section.", "kits": ["calm"], "doc": "patterns/explain-everything.md" },
+    { "id": "adaptive-shell", "name": "Rail on desktop, tabs on phones", "summary": "One navigation list renders as a side rail or as bottom tabs plus More, with text-style glyph icons.", "kits": ["calm"], "doc": "patterns/adaptive-shell.md" },
+    { "id": "one-source-two-runtimes", "name": "One token file, two runtimes", "summary": "A single JSON generates Dart for Flutter and CSS/TS for the web; --check fails on stale copies.", "kits": ["studio"], "doc": "patterns/one-source-two-runtimes.md" },
+    { "id": "glow-backdrop", "name": "Glow backdrop", "summary": "Soft coloured light behind the page from layered gradients, defined per theme as tokens.", "kits": ["studio", "calm"], "doc": "patterns/glow-backdrop.md" },
+    { "id": "enter-to-send", "name": "Enter to send, a setting", "summary": "A prompt box where the user decides whether Enter sends; Shift+Enter always adds a line.", "kits": ["studio"], "doc": "patterns/enter-to-send.md" }
+  ]
+}

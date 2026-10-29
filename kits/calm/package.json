@@ -1,0 +1,41 @@
+{
+  "name": "nithya-calm",
+  "version": "0.1.0",
+  "description": "Nithya Calm: global themes, a safe theme editor and Svelte 5 components",
+  "license": "Apache-2.0",
+  "type": "module",
+  "svelte": "./src/index.ts",
+  "exports": {
+    ".": {
+      "svelte": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./base.css": "./src/base.css"
+  },
+  "scripts": {
+    "tokens": "node scripts/build.mjs",
+    "test": "node --test test/*.test.ts",
+    "check": "node scripts/build.mjs --check && svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "svelte": "^5.57.2"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.8",
+    "@lucide/svelte": "^1.64.0"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/node": "^24.19.2",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.7",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.5"
+  }
+}

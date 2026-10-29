@@ -127,6 +127,8 @@ const check = process.argv.includes('--check');
 let stale = 0;
 for (const [rel, body] of Object.entries(files)) {
   const file = path.join(root, rel);
+  // A kit picked for one runtime has no folder for the other; skip it.
+  if (!fs.existsSync(path.dirname(file))) continue;
   const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
   if (current === body) continue;
   if (check) {

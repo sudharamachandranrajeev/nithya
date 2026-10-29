@@ -48,6 +48,7 @@
   "themes": {
     "dusk": {
       "label": "Dusk",
+      "description": "Soft charcoal with near-white text. The everyday dark look.",
       "brightness": "dark",
       "background": "#111214",
       "panel": "#1B1C20",
@@ -67,6 +68,7 @@
     },
     "daylight": {
       "label": "Daylight",
+      "description": "White pages and light grey panels for bright rooms.",
       "brightness": "light",
       "background": "#FFFFFF",
       "panel": "#F6F7F9",
@@ -86,6 +88,7 @@
     },
     "graphite": {
       "label": "Graphite",
+      "description": "Neutral grey, no colour cast. Lets images speak.",
       "brightness": "dark",
       "background": "#141414",
       "panel": "#1E1E1E",
@@ -105,6 +108,7 @@
     },
     "ink": {
       "label": "Ink",
+      "description": "True black, for OLED screens and dark rooms.",
       "brightness": "dark",
       "background": "#000000",
       "panel": "#0B0B0C",
@@ -124,6 +128,7 @@
     },
     "lagoon": {
       "label": "Lagoon",
+      "description": "Deep navy with blue and teal light behind the page.",
       "brightness": "dark",
       "background": "#060B12",
       "panel": "#0E1520",
@@ -146,6 +151,7 @@
     },
     "ember": {
       "label": "Ember",
+      "description": "Plum-black with magenta and orange light behind the page.",
       "brightness": "dark",
       "background": "#130A10",
       "panel": "#1B1118",

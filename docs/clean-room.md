@@ -3,12 +3,14 @@
 Nithya studies shipped applications to learn how good creative-tool interfaces are put
 together, then rebuilds those ideas from a written description. It never copies source.
 
+This process covers the **Studio** kit only. The **Calm** kit is our own design, first built
+for Arogya Swasthya. No shipped app was studied for it, so it has no observation room.
+
 ## Rules
 
 1. **Two rooms.** The *observation room* looks at a shipped release with REA and writes
    behaviour, layout and design-role descriptions in plain words into `docs/spec/`.
-   The *build room* (`tokens/`, `flutter/`, `web/`, `tauri/`) works only from those
-   spec files.
+   The *build room* (`kits/studio/`) works only from those spec files.
 2. **No source, ever.** The upstream repository's source tree is not opened, cloned or
    searched. Only the published release binary is analysed.
 3. **Recovered bytes stay in the scratch area.** Recovered bundles, decompiled modules,
