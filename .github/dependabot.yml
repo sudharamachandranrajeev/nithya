@@ -1,0 +1,26 @@
+# Weekly dependency updates, grouped so each ecosystem opens at most one
+# routine pull request. Security fixes arrive separately, as soon as an
+# advisory is published (repo setting: Dependabot security updates).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /kits/calm
+    schedule: { interval: weekly, day: monday }
+    open-pull-requests-limit: 5
+    groups:
+      npm-kits-calm:
+        update-types: [minor, patch]
+  - package-ecosystem: npm
+    directory: /kits/studio/web
+    schedule: { interval: weekly, day: monday }
+    open-pull-requests-limit: 5
+    groups:
+      npm-kits-studio-web:
+        update-types: [minor, patch]
+  - package-ecosystem: pub
+    directory: /kits/studio/flutter
+    schedule: { interval: weekly, day: monday }
+    open-pull-requests-limit: 5
+    groups:
+      pub-kits-studio-flutter:
+        update-types: [minor, patch]
