@@ -186,7 +186,7 @@ function pick(args) {
       '',
       `- Kit: ${kit.name} (\`${kit.id}\`), runtime ${runtime.label}`,
       `- Themes: ${chosen.join(', ')} (default: ${chosen[0]})`,
-      `- Source: github.com/sudharamachandranrajeev/nithya at \`${commit}\`, ${new Date().toISOString().slice(0, 10)}`,
+      `- Source: github.com/sudharamachandranrajeev/nithya-design-framework at \`${commit}\`, ${new Date().toISOString().slice(0, 10)}`,
       `- Licence: Apache-2.0 (see LICENSE)`,
       '',
       'This folder is a copy. Change it freely; to take later Nithya changes, pick again into a',

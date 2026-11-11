@@ -52,7 +52,7 @@ You need [Git](https://git-scm.com) and [Node.js](https://nodejs.org) 22.18 or n
 **1. Get the code**
 
 ```sh
-git clone https://github.com/sudharamachandranrajeev/nithya
+git clone https://github.com/sudharamachandranrajeev/nithya-design-framework
 cd nithya
 ```
 
